@@ -4,29 +4,35 @@ const Face = (props) => {
 
   const svgWidth = 960
   const svgHeight = 500
+  const centerX = svgWidth/2
+  const centerY = svgHeight/2
+  const strokeWidth = 30
+  const eyeOffsetX = 100
+  const eyeOffsetY = 50
+  const eyeRadius = 20
 
   return (
     <svg width={svgWidth} height={svgHeight}>
       <circle
-        r="200"
-        cx="460"
-        cy="250"
+        cx={centerX}
+        cy={centerY}
+        r={centerY - strokeWidth/2}
+        strokeWidth={strokeWidth}
         fill="#FFD460"
         stroke="#F7C53F"
-        strokeWidth="10px"
       />
 
       <circle
-        r="20"
-        cx="350"
-        cy="220"
+        r={eyeRadius}
+        cx={centerX - eyeOffsetX}
+        cy={centerY - eyeOffsetY}
         fill="black"
       />
 
       <circle
-        r="20"
-        cx="550"
-        cy="220"
+        r={eyeRadius}
+        cx={centerX + eyeOffsetX}
+        cy={centerY - eyeOffsetY}
         fill="black"
       />
 
