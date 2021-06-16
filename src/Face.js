@@ -1,4 +1,5 @@
 import React from 'react'
+import { arc } from 'd3'
 
 const Face = (props) => {
 
@@ -11,30 +12,41 @@ const Face = (props) => {
   const eyeOffsetY = 50
   const eyeRadius = 20
 
+  const mouthWidth = 90
+  const mouthRadius = 100
+
+  const mouthArc = arc()
+    .innerRadius(mouthWidth)
+    .outerRadius(mouthRadius)
+    .startAngle((Math.PI/2)*1.3)
+    .endAngle((Math.PI*3/2)*0.9)
+
   return (
     <svg width={svgWidth} height={svgHeight}>
-      <circle
-        cx={centerX}
-        cy={centerY}
-        r={centerY - strokeWidth/2}
-        strokeWidth={strokeWidth}
-        fill="#FFD460"
-        stroke="#F7C53F"
-      />
+      <g transform={`translate(${centerX}, ${centerY})`}>
+        <circle
+          r={centerY - strokeWidth/2}
+          strokeWidth={strokeWidth}
+          fill="#FFD460"
+          stroke="#F7C53F"
+        />
 
-      <circle
-        r={eyeRadius}
-        cx={centerX - eyeOffsetX}
-        cy={centerY - eyeOffsetY}
-        fill="black"
-      />
+        <circle
+          r={eyeRadius}
+          cx={- eyeOffsetX}
+          cy={- eyeOffsetY}
+          fill="black"
+        />
 
-      <circle
-        r={eyeRadius}
-        cx={centerX + eyeOffsetX}
-        cy={centerY - eyeOffsetY}
-        fill="black"
-      />
+        <circle
+          r={eyeRadius}
+          cx={+ eyeOffsetX}
+          cy={- eyeOffsetY}
+          fill="black"
+        />
+
+        <path d={mouthArc()} />
+      </g>
 
     </svg>
   )
