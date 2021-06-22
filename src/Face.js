@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaceContainer } from './FaceContainer'
 import { BackgroundCircle } from './BackgroundCircle'
 import { Eyes } from './Eyes'
 import { Mouth } from './Mouth'
@@ -18,8 +19,12 @@ const Face = (props) => {
   const mouthRadius = 100
 
   return (
-    <svg width={svgWidth} height={svgHeight}>
-      <g transform={`translate(${centerX}, ${centerY})`}>
+    <FaceContainer
+      svgWidth = { svgWidth }
+      svgHeight = { svgHeight }
+      centerX = { centerX }
+      centerY = { centerY }
+    >
         <BackgroundCircle
           radius = {centerY - strokeWidth/2}
           strokeWidth = {strokeWidth}
@@ -33,9 +38,8 @@ const Face = (props) => {
           mouthWidth = {mouthWidth}
           mouthRadius = {mouthRadius}
         />
-      </g>
+    </FaceContainer>
 
-    </svg>
   )
 }
 
